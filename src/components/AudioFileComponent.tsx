@@ -36,14 +36,10 @@ const FileName = styled.span<{}>`
     }
 `;
 
-function audioClick(pathF: string) {
-    console.log(pathF);
-}
-
 export const AudioFileComponent: React.FC<Props> = ({ fileName, filePath }) => {
     return (
         <>
-            <Container onClick={(event) => audioClick(filePath)}>
+            <Container>
                 <Wrapper>
                     <FileImg></FileImg>
                 </Wrapper>
