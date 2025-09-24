@@ -1,8 +1,20 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import "./App.css";
 import { AudioFileComponent } from "./components/AudioFileComponent";
 import type { DropboxFile } from "./components/customTypes";
 import { fetchFiles } from "./components/dropbox";
+
+const ComponentUl = styled.ul<{}>`
+    margin: auto;
+`;
+
+const ComponentLi = styled.li<{}>`
+    display: inline-block;
+    padding: 15px;
+    width: fit-content;
+    list-style-type: none;
+`;
 
 function App() {
     const [files, setFiles] = useState<DropboxFile[]>([]);
@@ -33,13 +45,17 @@ function App() {
 
     return (
         <>
-            {files?.map((item, index) => {
-                return (
-                    <div className="appHome" key={index} onClick={() => handleDownload(item)}>
-                        <AudioFileComponent file={item}></AudioFileComponent>
-                    </div>
-                );
-            })}
+            <ComponentUl>
+                {files?.map((item, index) => {
+                    return (
+                        <ComponentLi key={index}>
+                            <div className="appHome" key={index} onClick={() => handleDownload(item)}>
+                                <AudioFileComponent file={item}></AudioFileComponent>
+                            </div>
+                        </ComponentLi>
+                    );
+                })}
+            </ComponentUl>
         </>
     );
 }
