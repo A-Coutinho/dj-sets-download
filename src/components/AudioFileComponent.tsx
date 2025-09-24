@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import imgUrl from "./../assets/artworkNew.png";
+import type { DropboxFile } from "./customTypes";
 
 interface Props {
-    fileName: string;
-    filePath: string;
+    file: DropboxFile;
 }
 
 const Container = styled.div<{}>`
@@ -19,11 +18,15 @@ const Wrapper = styled.div<{}>`
     @media (max-width: 999px) {
     }
 `;
-const FileImg = styled.div<{}>`
-    background-image: url(${imgUrl});
-    background-size: contain;
-    background-position: right;
-    background-repeat: no-repeat;
+const FileImg = styled.div<{ $imgUrl: string | undefined }>`
+    ${({ $imgUrl }) =>
+        $imgUrl &&
+        `
+      background-image: url(${$imgUrl});
+      background-size: contain;
+      background-position: right;
+      background-repeat: no-repeat;
+    `}
     width: 250px;
     height: 153px;
     @media (max-width: 999px) {
@@ -36,15 +39,15 @@ const FileName = styled.span<{}>`
     }
 `;
 
-export const AudioFileComponent: React.FC<Props> = ({ fileName, filePath }) => {
+export const AudioFileComponent: React.FC<Props> = ({ file }) => {
     return (
         <>
             <Container>
                 <Wrapper>
-                    <FileImg></FileImg>
+                    <FileImg $imgUrl={file.cover ? file.cover.replace("dl=0", "dl=1") : undefined}></FileImg>
                 </Wrapper>
                 <Wrapper>
-                    <FileName>{fileName}</FileName>
+                    <FileName>{file.name.substring(0, file.name.lastIndexOf("."))}</FileName>
                 </Wrapper>
             </Container>
         </>

@@ -1,12 +1,15 @@
-import type { DropboxEntry } from "../customTypes";
+import type { DropboxFile } from "./customTypes";
 
 const BASE_URL = "https://multiple-fast-api.fly.dev";
 
-export async function fetchFiles(): Promise<DropboxEntry[]> {
+export async function fetchFiles(): Promise<DropboxFile[]> {
     const res = await fetch(`${BASE_URL}/files`);
     if (!res.ok) throw new Error(`Error fetching files: ${res.statusText}`);
-    const data = await res.json();
-    return data;
+    const data: DropboxFile[] = await res.json();
+
+    // Keep only files that are marked as downloadable
+    console.log(data);
+    return data.filter((file) => file.is_downloadable);
 }
 
 export async function getDownloadLink(path: string): Promise<string> {
@@ -14,5 +17,6 @@ export async function getDownloadLink(path: string): Promise<string> {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Error fetching download link: ${res.statusText}`);
     const data = await res.json();
+
     return data.url;
 }

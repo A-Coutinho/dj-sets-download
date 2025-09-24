@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { AudioFileComponent } from "./components/AudioFileComponent";
-import { fetchFiles, getDownloadLink } from "./components/dropbox";
-import type { DropboxEntry } from "./customTypes";
+import type { DropboxFile } from "./components/customTypes";
+import { fetchFiles } from "./components/dropbox";
 
 function App() {
-    const [files, setFiles] = useState<DropboxEntry[]>([]);
+    const [files, setFiles] = useState<DropboxFile[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -19,11 +19,10 @@ function App() {
             .finally(() => setLoading(false));
     }, []);
 
-    const handleDownload = async (file: DropboxEntry) => {
+    const handleDownload = async (file: DropboxFile) => {
         try {
-            const url = await getDownloadLink(file.path_lower); // internally uses encodeURIComponent
-            if (url.slice(-4) === "dl=0") window.open(url.replace("dl=0", "dl=1"), "_blank");
-            else window.open(url, "_blank");
+            if (file.link.slice(-4) === "dl=0") window.open(file.link.replace("dl=0", "dl=1"), "_blank");
+            else window.open(file.link, "_blank");
         } catch (err) {
             console.error(err);
         }
@@ -37,7 +36,7 @@ function App() {
             {files?.map((item, index) => {
                 return (
                     <div className="appHome" key={index} onClick={() => handleDownload(item)}>
-                        <AudioFileComponent filePath={item.path_lower} fileName={item.name}></AudioFileComponent>
+                        <AudioFileComponent file={item}></AudioFileComponent>
                     </div>
                 );
             })}
