@@ -1,19 +1,61 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import "./App.css";
 import { AudioFileComponent } from "./components/AudioFileComponent";
-import type { DropboxFile } from "./components/customTypes";
+import { media, type DropboxFile } from "./components/customTypes";
 import { fetchFiles } from "./components/dropbox";
+
+const Container = styled.div<{}>`
+    margin: auto;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+
+    @media (${media.smallphone}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.tablet}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.largeDesktop}) {
+    }
+`;
 
 const ComponentUl = styled.ul<{}>`
     margin: auto;
+    padding: 0;
+    width: fit-content;
+
+    @media (${media.smallphone}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.tablet}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.largeDesktop}) {
+    }
 `;
 
 const ComponentLi = styled.li<{}>`
     display: inline-block;
+    margin: auto;
     padding: 15px;
     width: fit-content;
     list-style-type: none;
+
+    @media (${media.smallphone}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.tablet}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.largeDesktop}) {
+    }
 `;
 
 function App() {
@@ -40,22 +82,24 @@ function App() {
         }
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (!files.length) return <div>No files found</div>;
+    if (loading) return <Container>Loading...</Container>;
+    if (!files.length) return <Container>No files found</Container>;
 
     return (
         <>
-            <ComponentUl>
-                {files?.map((item, index) => {
-                    return (
-                        <ComponentLi key={index}>
-                            <div className="appHome" key={index} onClick={() => handleDownload(item)}>
-                                <AudioFileComponent file={item}></AudioFileComponent>
-                            </div>
-                        </ComponentLi>
-                    );
-                })}
-            </ComponentUl>
+            <Container>
+                <ComponentUl>
+                    {files?.map((item, index) => {
+                        return (
+                            <ComponentLi key={index}>
+                                <div className="appHome" key={index} onClick={() => handleDownload(item)}>
+                                    <AudioFileComponent file={item}></AudioFileComponent>
+                                </div>
+                            </ComponentLi>
+                        );
+                    })}
+                </ComponentUl>
+            </Container>
         </>
     );
 }

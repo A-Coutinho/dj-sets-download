@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import type { DropboxFile } from "./customTypes";
+import { media, type DropboxFile } from "./customTypes";
 
 interface Props {
     file: DropboxFile;
@@ -7,15 +7,34 @@ interface Props {
 
 const Container = styled.div<{}>`
     width: 260px;
-    height: 177px;
-    @media (max-width: 999px) {
+    height: fit-content;
+    background-color: #474646;
+    border-radius: 10%;
+
+    @media (${media.smallphone}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.tablet}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.largeDesktop}) {
     }
 `;
 const Wrapper = styled.div<{}>`
     width: fit-content;
     height: fit-content;
     margin: auto;
-    @media (max-width: 999px) {
+    @media (${media.smallphone}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.tablet}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.largeDesktop}) {
     }
 `;
 const FileImg = styled.div<{ $imgUrl: string | undefined }>`
@@ -29,17 +48,39 @@ const FileImg = styled.div<{ $imgUrl: string | undefined }>`
     `}
     width: 250px;
     height: 153px;
-    @media (max-width: 999px) {
+    @media (${media.smallphone}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.tablet}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.largeDesktop}) {
     }
 `;
 const FileName = styled.span<{}>`
     width: 250px;
     height: 24px;
-    @media (max-width: 999px) {
+    @media (${media.smallphone}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.tablet}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.largeDesktop}) {
     }
 `;
 
 export const AudioFileComponent: React.FC<Props> = ({ file }) => {
+    function getNameOrArtist(isName: boolean) {
+        const fileName = file.name.substring(0, file.name.lastIndexOf("."));
+
+        return isName ? fileName.substring(0, fileName.lastIndexOf(" - ")) : fileName.substring(fileName.lastIndexOf(" - ") + 3, fileName.length);
+    }
+
     return (
         <>
             <Container>
@@ -47,7 +88,10 @@ export const AudioFileComponent: React.FC<Props> = ({ file }) => {
                     <FileImg $imgUrl={file.cover ? file.cover.replace("dl=0", "dl=1") : undefined}></FileImg>
                 </Wrapper>
                 <Wrapper>
-                    <FileName>{file.name.substring(0, file.name.lastIndexOf("."))}</FileName>
+                    <FileName>{getNameOrArtist(true)}</FileName>
+                </Wrapper>
+                <Wrapper>
+                    <FileName>{getNameOrArtist(false)}</FileName>
                 </Wrapper>
             </Container>
         </>
