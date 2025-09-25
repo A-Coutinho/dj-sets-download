@@ -1,60 +1,40 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AudioFileComponent } from "./components/AudioFileComponent";
+import { InfoDisplay } from "./components/InfoDisplay";
 import { media, type DropboxFile } from "./components/customTypes";
 import { fetchFiles } from "./components/dropbox";
 
 const Container = styled.div<{}>`
     margin: auto;
     padding: 0;
-    margin: 0;
     text-align: center;
-
-    @media (${media.smallphone}) {
-    }
-    @media (${media.phone}) {
-    }
-    @media (${media.tablet}) {
-    }
-    @media (${media.desktop}) {
-    }
-    @media (${media.largeDesktop}) {
-    }
+    width: 100%;
+    height: 100vh;
 `;
 
 const ComponentUl = styled.ul<{}>`
     margin: auto;
     padding: 0;
     width: fit-content;
-
-    @media (${media.smallphone}) {
-    }
-    @media (${media.phone}) {
-    }
-    @media (${media.tablet}) {
-    }
-    @media (${media.desktop}) {
-    }
-    @media (${media.largeDesktop}) {
-    }
 `;
 
 const ComponentLi = styled.li<{}>`
     display: inline-block;
     margin: auto;
-    padding: 15px;
     width: fit-content;
     list-style-type: none;
+    margin: 15px;
 
-    @media (${media.smallphone}) {
-    }
-    @media (${media.phone}) {
-    }
-    @media (${media.tablet}) {
+    @media (${media.largeDesktop}) {
     }
     @media (${media.desktop}) {
     }
-    @media (${media.largeDesktop}) {
+    @media (${media.tablet}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.smallphone}) {
     }
 `;
 
@@ -82,8 +62,18 @@ function App() {
         }
     };
 
-    if (loading) return <Container>Loading...</Container>;
-    if (!files.length) return <Container>No files found</Container>;
+    if (loading)
+        return (
+            <Container>
+                <InfoDisplay textToDisplay="Loading..."></InfoDisplay>
+            </Container>
+        );
+    if (!files.length)
+        return (
+            <Container>
+                <InfoDisplay textToDisplay="No files found"></InfoDisplay>
+            </Container>
+        );
 
     return (
         <>

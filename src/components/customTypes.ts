@@ -22,3 +22,17 @@ export const media = {
     desktop: `(max-width: ${breakpoints.desktop})`,
     largeDesktop: `(max-width: ${breakpoints.largeDesktop})`,
 };
+
+export const fontSizes = {
+    xs: "12px",
+    sm: "14px",
+    base: "16px",
+    md: "18px",
+    lg: "20px",
+    xl: "24px",
+    xxl: "30px",
+};
+
+export const mediaSets = {
+    audiofileBorder: "1px solid grey",
+};

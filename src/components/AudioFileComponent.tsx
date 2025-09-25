@@ -1,40 +1,42 @@
 import styled from "styled-components";
-import { media, type DropboxFile } from "./customTypes";
+import { fontSizes, media, mediaSets, type DropboxFile } from "./customTypes";
 
 interface Props {
     file: DropboxFile;
 }
 
 const Container = styled.div<{}>`
-    width: 260px;
+    width: fit-content;
     height: fit-content;
-    background-color: #474646;
     border-radius: 10%;
+    border: ${mediaSets.audiofileBorder};
+    padding: 10px;
 
-    @media (${media.smallphone}) {
-    }
-    @media (${media.phone}) {
-    }
-    @media (${media.tablet}) {
+    @media (${media.largeDesktop}) {
     }
     @media (${media.desktop}) {
     }
-    @media (${media.largeDesktop}) {
+    @media (${media.tablet}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.smallphone}) {
     }
 `;
 const Wrapper = styled.div<{}>`
-    width: fit-content;
+    width: 100%;
     height: fit-content;
     margin: auto;
-    @media (${media.smallphone}) {
-    }
-    @media (${media.phone}) {
-    }
-    @media (${media.tablet}) {
+
+    @media (${media.largeDesktop}) {
     }
     @media (${media.desktop}) {
     }
-    @media (${media.largeDesktop}) {
+    @media (${media.tablet}) {
+    }
+    @media (${media.phone}) {
+    }
+    @media (${media.smallphone}) {
     }
 `;
 const FileImg = styled.div<{ $imgUrl: string | undefined }>`
@@ -48,29 +50,39 @@ const FileImg = styled.div<{ $imgUrl: string | undefined }>`
     `}
     width: 250px;
     height: 153px;
-    @media (${media.smallphone}) {
-    }
-    @media (${media.phone}) {
-    }
-    @media (${media.tablet}) {
+    margin: auto;
+    @media (${media.largeDesktop}) {
     }
     @media (${media.desktop}) {
     }
-    @media (${media.largeDesktop}) {
+    @media (${media.tablet}) {
+        width: 199px;
+        height: 117px;
+    }
+    @media (${media.phone}) {
+        width: 181px;
+        height: 106px;
+    }
+    @media (${media.smallphone}) {
+        width: 115px;
+        height: 67px;
     }
 `;
 const FileName = styled.span<{}>`
-    width: 250px;
-    height: 24px;
-    @media (${media.smallphone}) {
-    }
-    @media (${media.phone}) {
-    }
-    @media (${media.tablet}) {
+    width: 100%;
+    font-size: ${fontSizes.lg};
+
+    @media (${media.largeDesktop}) {
     }
     @media (${media.desktop}) {
     }
-    @media (${media.largeDesktop}) {
+    @media (${media.tablet}) {
+    }
+    @media (${media.phone}) {
+        font-size: ${fontSizes.md};
+    }
+    @media (${media.smallphone}) {
+        font-size: ${fontSizes.sm};
     }
 `;
 

@@ -1,7 +1,6 @@
 import type { DropboxFile } from "./customTypes";
 
 const BASE_URL = "https://multiple-fast-api.fly.dev";
-// const BASE_URL = "http://127.0.0.1:8080";
 
 export async function fetchFiles(): Promise<DropboxFile[]> {
     const res = await fetch(`${BASE_URL}/files`);
