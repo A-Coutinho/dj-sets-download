@@ -66,7 +66,6 @@ const Wrapper = styled.div<{}>`
 `;
 const AudioComponent = styled.audio<{}>`
     width: 100%;
-    height: fit-content;
     margin: auto;
     max-width: 500px;
 
