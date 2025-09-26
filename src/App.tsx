@@ -78,7 +78,7 @@ function App() {
     return (
         <>
             <Container>
-                {audioPlayerVisible ? <AudioPlayerComponent file={audioPlayerFile} handlePlay={showAudioPlayer}></AudioPlayerComponent> : null}
+                {audioPlayerVisible && audioPlayerFile ? <AudioPlayerComponent file={audioPlayerFile} handlePlay={showAudioPlayer}></AudioPlayerComponent> : null}
                 <ComponentUl>
                     {files?.map((item, index) => {
                         return (

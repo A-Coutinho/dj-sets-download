@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media, type DropboxFile } from "./customTypes";
 
 interface Props {
-    file: DropboxFile | undefined;
+    file: DropboxFile;
     handlePlay: Function;
 }
 
