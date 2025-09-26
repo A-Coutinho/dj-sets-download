@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AudioFileComponent } from "./components/AudioFileComponent";
+import { AudioPlayerComponent } from "./components/AudioPlayerComponent";
 import { InfoDisplay } from "./components/InfoDisplay";
 import { media, type DropboxFile } from "./components/customTypes";
 import { fetchFiles } from "./components/dropbox";
@@ -41,6 +42,8 @@ const ComponentLi = styled.li<{}>`
 function App() {
     const [files, setFiles] = useState<DropboxFile[]>([]);
     const [loading, setLoading] = useState(true);
+    const [audioPlayerVisible, setAudioPlayerVisible] = useState(false);
+    const [audioPlayerFile, setAudioPlayerFile] = useState<DropboxFile | undefined>(undefined);
 
     useEffect(() => {
         return () => {};
@@ -52,15 +55,6 @@ function App() {
             .catch(console.error)
             .finally(() => setLoading(false));
     }, []);
-
-    const handleDownload = async (file: DropboxFile) => {
-        try {
-            if (file.link.slice(-4) === "dl=0") window.open(file.link.replace("dl=0", "dl=1"), "_blank");
-            else window.open(file.link, "_blank");
-        } catch (err) {
-            console.error(err);
-        }
-    };
 
     if (loading)
         return (
@@ -75,15 +69,22 @@ function App() {
             </Container>
         );
 
+    function showAudioPlayer(showPlayer: boolean, file: DropboxFile) {
+        setAudioPlayerVisible(showPlayer);
+        setAudioPlayerFile(file);
+        console.log(showPlayer, file);
+    }
+
     return (
         <>
             <Container>
+                {audioPlayerVisible ? <AudioPlayerComponent file={audioPlayerFile} handlePlay={showAudioPlayer}></AudioPlayerComponent> : null}
                 <ComponentUl>
                     {files?.map((item, index) => {
                         return (
                             <ComponentLi key={index}>
-                                <div className="appHome" key={index} onClick={() => handleDownload(item)}>
-                                    <AudioFileComponent file={item}></AudioFileComponent>
+                                <div className="appHome" key={index}>
+                                    <AudioFileComponent file={item} handlePlay={showAudioPlayer}></AudioFileComponent>
                                 </div>
                             </ComponentLi>
                         );
