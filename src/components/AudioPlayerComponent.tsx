@@ -12,7 +12,7 @@ const ComponentContainer = styled.div<{}>`
     position: absolute;
     z-index: 1;
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.95;
     left: 0;
     right: 0;
     top: 0;
