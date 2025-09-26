@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import downloadIcon from "../assets/download.png";
+import playIcon from "../assets/play.png";
 import { fontSizes, media, mediaSets, type DropboxFile } from "./customTypes";
 
 interface Props {
@@ -51,6 +53,7 @@ const FileImg = styled.div<{ $imgUrl: string | undefined }>`
     width: 250px;
     height: 153px;
     margin: auto;
+    position: relative;
     @media (${media.largeDesktop}) {
     }
     @media (${media.desktop}) {
@@ -68,6 +71,31 @@ const FileImg = styled.div<{ $imgUrl: string | undefined }>`
         height: 67px;
     }
 `;
+
+const FileImgActionDivL = styled.div<{}>`
+    background-image: url(${downloadIcon});
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 39%;
+    height: 73%;
+    margin: auto;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+`;
+const FileImgActionDivR = styled.div<{}>`
+    background-image: url(${playIcon});
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 39%;
+    height: 73%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+`;
+
 const FileName = styled.span<{}>`
     width: 100%;
     font-size: ${fontSizes.lg};
@@ -97,7 +125,10 @@ export const AudioFileComponent: React.FC<Props> = ({ file }) => {
         <>
             <Container>
                 <Wrapper>
-                    <FileImg $imgUrl={file.cover ? file.cover.replace("dl=0", "dl=1") : undefined}></FileImg>
+                    <FileImg $imgUrl={file.cover ? file.cover.replace("dl=0", "dl=1") : undefined}>
+                        <FileImgActionDivL></FileImgActionDivL>
+                        <FileImgActionDivR></FileImgActionDivR>
+                    </FileImg>
                 </Wrapper>
                 <Wrapper>
                     <FileName>{getNameOrArtist(true)}</FileName>
