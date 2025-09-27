@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import downloadIcon from "../assets/download.png";
 import playIcon from "../assets/play.png";
+import tracklistIcon from "../assets/tracklist.png";
 import { fontSizes, media, mediaSets, type DropboxFile } from "./customTypes";
 
 interface Props {
     file: DropboxFile;
     handlePlay: Function;
+    handleTracklist: Function;
 }
 
 const Container = styled.div<{}>`
@@ -96,6 +98,17 @@ const FileImgActionDivR = styled.div<{}>`
     right: 0;
     bottom: 0;
 `;
+const FileImgActionDivM = styled.div<{}>`
+    background-image: url(${tracklistIcon});
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 39%;
+    height: 73%;
+    position: absolute;
+    right: 31%;
+    top: 0;
+`;
 
 const FileName = styled.span<{}>`
     width: 100%;
@@ -115,7 +128,7 @@ const FileName = styled.span<{}>`
     }
 `;
 
-export const AudioFileComponent: React.FC<Props> = ({ file, handlePlay }) => {
+export const AudioFileComponent: React.FC<Props> = ({ file, handlePlay, handleTracklist }) => {
     function getNameOrArtist(isName: boolean) {
         const fileName = file.name.substring(0, file.name.lastIndexOf("."));
 
@@ -131,20 +144,13 @@ export const AudioFileComponent: React.FC<Props> = ({ file, handlePlay }) => {
         }
     };
 
-    // const handlePlay = async (file: DropboxFile) => {
-    //     try {
-    //         window.open(file.link, "_blank");
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // };
-
     return (
         <>
             <Container>
                 <Wrapper>
                     <FileImg $imgUrl={file.cover ? file.cover.replace("dl=0", "dl=1") : undefined}>
                         <FileImgActionDivL onClick={() => handleDownload(file)}></FileImgActionDivL>
+                        <FileImgActionDivM onClick={() => handleTracklist(true, file)}></FileImgActionDivM>
                         <FileImgActionDivR onClick={() => handlePlay(true, file)}></FileImgActionDivR>
                     </FileImg>
                 </Wrapper>

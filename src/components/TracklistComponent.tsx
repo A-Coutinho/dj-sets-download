@@ -3,7 +3,7 @@ import { fontSizes, media, type DropboxFile } from "./customTypes";
 
 interface Props {
     file: DropboxFile;
-    handlePlay: Function;
+    handleTracklist: Function;
 }
 
 const ComponentContainer = styled.div<{}>`
@@ -67,32 +67,21 @@ const Wrapper = styled.div<{}>`
         font-size: ${fontSizes.sm};
     }
 `;
-const AudioComponent = styled.audio<{}>`
-    width: 100%;
+const TracklistText = styled.pre<{}>`
+    width: fit-content;
     margin: auto;
-    max-width: 500px;
-
-    @media (${media.largeDesktop}) {
-    }
-    @media (${media.desktop}) {
-    }
-    @media (${media.tablet}) {
-    }
-    @media (${media.phone}) {
-    }
-    @media (${media.smallphone}) {
-    }
+    text-align: left;
 `;
 
-export const AudioPlayerComponent: React.FC<Props> = ({ file, handlePlay }) => {
+export const TracklistComponent: React.FC<Props> = ({ file, handleTracklist }) => {
     return (
         <>
             <ComponentContainer>
                 <Container>
-                    <Wrapper onClick={() => handlePlay(false)}>CLOSE</Wrapper>
+                    <Wrapper onClick={() => handleTracklist(false)}>CLOSE</Wrapper>
                     <Wrapper>{file.name}</Wrapper>
                     <Wrapper>
-                        <AudioComponent src={file.link.replace("dl=0", "raw=1")} controls />
+                        <TracklistText>{file.tracklist!}</TracklistText>
                     </Wrapper>
                 </Container>
             </ComponentContainer>

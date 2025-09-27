@@ -5,6 +5,7 @@ export type DropboxFile = {
     is_downloadable: boolean;
     id: string;
     cover?: string;
+    tracklist?: string;
 };
 
 export const breakpoints = {

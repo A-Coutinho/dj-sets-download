@@ -7,6 +7,8 @@ export async function fetchFiles(): Promise<DropboxFile[]> {
     if (!res.ok) throw new Error(`Error fetching files: ${res.statusText}`);
     const data: DropboxFile[] = await res.json();
 
+    console.log(data);
+
     // Keep only files that are marked as downloadable
     return data.filter((file) => file.is_downloadable);
 }
