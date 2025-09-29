@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import closeIcon from "../assets/cross.png";
 import { fontSizes, media, type DropboxFile } from "./customTypes";
 
 interface Props {
@@ -71,6 +72,47 @@ const TracklistText = styled.pre<{}>`
     width: fit-content;
     margin: auto;
     text-align: left;
+    margin: 25px auto;
+
+    @media (${media.largeDesktop}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.tablet}) {
+        margin: 20px auto;
+        width: 95%;
+    }
+    @media (${media.phone}) {
+        width: 95%;
+        margin: 15px 0;
+    }
+    @media (${media.smallphone}) {
+        width: 95%;
+        margin: 10px 0;
+    }
+`;
+const CloseIcon = styled.div<{}>`
+    width: 45px;
+    aspect-ratio: 1 / 1;
+    margin: 25px auto;
+    background-image: url(${closeIcon});
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media (${media.largeDesktop}) {
+    }
+    @media (${media.desktop}) {
+    }
+    @media (${media.tablet}) {
+        margin: 20px auto;
+    }
+    @media (${media.phone}) {
+        margin: 15px auto;
+    }
+    @media (${media.smallphone}) {
+        margin: 10px auto;
+    }
 `;
 
 export const TracklistComponent: React.FC<Props> = ({ file, handleTracklist }) => {
@@ -78,7 +120,9 @@ export const TracklistComponent: React.FC<Props> = ({ file, handleTracklist }) =
         <>
             <ComponentContainer>
                 <Container>
-                    <Wrapper onClick={() => handleTracklist(false)}>CLOSE</Wrapper>
+                    <Wrapper>
+                        <CloseIcon onClick={() => handleTracklist(false)}></CloseIcon>
+                    </Wrapper>
                     <Wrapper>{file.name}</Wrapper>
                     <Wrapper>
                         <TracklistText>{file.tracklist!}</TracklistText>
