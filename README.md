@@ -1,69 +1,73 @@
-# React + TypeScript + Vite
+# 🎶 DJ Sets Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 
-Currently, two official plugins are available:
+A modern React app that streams DJ sets directly from Dropbox via a FastAPI backend.  
+Users can **play**, **download**, and **view tracklists** for each set, all inside a clean UI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-   🎧 Stream MP3 files with an `<audio>` player
+-   📥 Direct download support
+-   📃 Tracklist viewer
+-   🖼️ Cover artwork as background images
+-   ⚡ Built with Vite + TypeScript for speed
+-   🌐 Deployed to Fly.io (frontend + backend)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📂 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+frontend/
+├── src/
+│ ├── components/
+│ ├── assets/
+│ └── App.tsx
+├── public/
+├── package.json
+└── vite.config.ts
+
+---
+
+## 🛠️ Setup & Development
+
+### 1. Clone repo
+
+```bash
+git clone https://github.com/your-username/dj-sets-frontend.git
+cd dj-sets-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Configure backend URL
+
+```bash
+const BASE_URL = "http://127.0.0.1:8080"; // or your deployed backend
+```
+
+### 4. Run locally
+
+```bash
+npm run dev
+```
+
+### 5. Build & Deploy
+
+```bash
+npm run build
+```
+
+🔮 Demo
+🌍 Live demo: sets.antoniocoutinho.pt
+
+📜 License
+MIT — Feel free to fork and explore.
