@@ -22,6 +22,7 @@ Users can **play**, **download**, and **view tracklists** for each set, all insi
 
 ## 📂 Project Structure
 
+```plaintext
 frontend/
 ├── src/
 │ ├── components/
@@ -30,6 +31,7 @@ frontend/
 ├── public/
 ├── package.json
 └── vite.config.ts
+```
 
 ---
 
