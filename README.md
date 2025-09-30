@@ -69,7 +69,7 @@ npm run build
 ```
 
 🔮 Demo
-🌍 Live demo: sets.antoniocoutinho.pt
+[Live demo](sets.antoniocoutinho.pt)
 
 📜 License
 MIT — Feel free to fork and explore.
