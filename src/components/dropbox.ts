@@ -8,5 +8,5 @@ export async function fetchFiles(): Promise<DropboxFile[]> {
     const data: DropboxFile[] = await res.json();
 
     // Keep only files that are marked as downloadable
-    return data.filter((file) => file.is_downloadable);
+    return data.filter((file) => file.is_downloadable).sort((a, b) => a.name.localeCompare(b.name));
 }
